@@ -31,6 +31,15 @@ class MyLinkedList{
   }
   private int length;
   private Node start,end;
+  public static void main(String[] args){
+    Integer value = 5;
+    Integer value2 = 6;
+    MyLinkedList list = new MyLinkedList();
+    MyLinkedList.add(value);
+    MyLinkedList.add(value2);
+    System.out.println(list.size());
+    System.out.println(list);
+  }
   public MyLinkedList(){
     Node start = new Node(null,null,null);
     Node end = new Node(null,null,null);
