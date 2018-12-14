@@ -34,17 +34,12 @@ class MyLinkedList{
   public MyLinkedList(){
     Node startNode = new Node(null,null,null);
     Node endNode = new Node(null,null,null);
+    startNode.setNext(endNode);
+    endNode.setPrev(startNode);
   }
-  public int size(){
-    return this.length;
-  }
-  public boolean add(int value){
-    Node add = new node(value, end, null);
-  }
-  public String toString(){
-    String ans = start.data;
-    for(int i = 0; i < this.length; i++){
-      ans += start.next.data;
-    }
+  public boolean add(Integer value){
+    Node addToEnd = new Node(value, endNode, null);
+    endNode.setNext(addToEnd);
+    return true;
   }
 }
