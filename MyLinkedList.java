@@ -23,7 +23,9 @@ class MyLinkedList{
       return data;
     }
     public Integer setData(Integer value){
+      Integer oldData = data;
       data = value;
+      return oldData;
     }
     public String toString(){
       return data + "";
@@ -35,8 +37,8 @@ class MyLinkedList{
     Integer value = 5;
     Integer value2 = 6;
     MyLinkedList list = new MyLinkedList();
-    MyLinkedList.add(value);
-    MyLinkedList.add(value2);
+    list.add(value);
+    list.add(value2);
     System.out.println(list.size());
     System.out.println(list);
   }
@@ -64,11 +66,12 @@ class MyLinkedList{
     return length;
   }
   public String toString(){
-    current = start;
+    Node current = start;
     String ans = "";
     while(current.next != null){
-      and += current.getData();
+      ans += current.getData();
       current = current.next;
     }
+    return ans;
   }
 }
