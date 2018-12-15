@@ -14,10 +14,10 @@ class MyLinkedList{
       return prev;
     }
     public void setNext(Node other){
-      next = other;
+      this.next = other;
     }
     public void setPrev(Node other){
-      prev = other;
+      this.prev = other;
     }
     public Integer getData(){
       return data;
@@ -36,27 +36,27 @@ class MyLinkedList{
   public static void main(String[] args){
     Integer value = 5;
     Integer value2 = 6;
+    Integer value3 = 9;
     MyLinkedList list = new MyLinkedList();
     list.add(value);
     list.add(value2);
-    System.out.println(list.size());
-    System.out.println(list);
+    list.add(value3);
   }
   public MyLinkedList(){
     start = new Node(null,null,null);
-    end = start;
+    end = new Node(null,null,null);
     length = 0;
   }
   public boolean add(Integer value){
     if (length == 0){
       start.setData(value);
+      end.setPrev(start);
       length++;
       return true;
     }
     if (length == 1){
       end.setData(value);
       start.setNext(end);
-      end.setPrev(start);
       length++;
       return true;
     }
@@ -73,9 +73,13 @@ class MyLinkedList{
   public String toString(){
     Node current = start;
     String ans = "";
-    while(current.next != null){
+    while(current != null){
       ans += current.getData();
-      current = current.next;
+      if (current.next() != null){
+        current = current.next();
+      } else {
+        return ans;
+      }
     }
     return ans;
   }
