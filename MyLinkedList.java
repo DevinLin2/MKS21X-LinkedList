@@ -41,6 +41,7 @@ class MyLinkedList{
     list.add(value);
     list.add(value2);
     list.add(value3);
+    //System.out.println(list.get(2));
   }
   public MyLinkedList(){
     start = new Node(null,null,null);
@@ -91,5 +92,11 @@ class MyLinkedList{
       i--;
     }
     return NthNode;
+  }
+  public Integer get(int index){
+    return getNthNode(index).getData();
+  }
+  public Integer set(int index, Integer value){
+    return getNthNode(index).setData(value);
   }
 }
