@@ -3,9 +3,9 @@ class MyLinkedList{
     private Integer data;
     private Node next,prev;
     public Node(Integer element, Node prevNode, Node nextNode){
-      data = element;
-      prev = prevNode;
-      next = nextNode;
+      this.data = element;
+      this.prev = prevNode;
+      this.next = nextNode;
     }
     public Node next(){
       return next;
@@ -43,10 +43,8 @@ class MyLinkedList{
     System.out.println(list);
   }
   public MyLinkedList(){
-    Node start = new Node(null,null,null);
-    Node end = new Node(null,null,null);
-    start.setNext(end);
-    end.setPrev(start);
+    start = new Node(null,null,null);
+    end = start;
     length = 0;
   }
   public boolean add(Integer value){
@@ -54,13 +52,20 @@ class MyLinkedList{
       start.setData(value);
       length++;
       return true;
-    } else {
-      Node addToEnd = new Node(value,end,null);
-      end.setNext(addToEnd);
-      end = addToEnd;
+    }
+    if (length == 1){
+      end.setData(value);
+      start.setNext(end);
+      end.setPrev(start);
       length++;
       return true;
     }
+    Node addToEnd = new Node(value,null,null);
+    end.setNext(addToEnd);
+    addToEnd.setPrev(end);
+    end = addToEnd;
+    length++;
+    return true;
   }
   public int size(){
     return length;
