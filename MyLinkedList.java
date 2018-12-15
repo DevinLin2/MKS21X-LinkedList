@@ -42,8 +42,10 @@ class MyLinkedList{
     list.add(value);
     list.add(value2);
     list.add(value3);
-    System.out.println(list.contains(4));
-    System.out.println(list.contains(5));
+    System.out.println(list.indexOf(5));
+    System.out.println(list.indexOf(9));
+    System.out.println(list.indexOf(6));
+    System.out.println(list.indexOf(0));
     System.out.println(list);
   }
   public MyLinkedList(){
@@ -116,5 +118,22 @@ class MyLinkedList{
       }
     }
     return contain;
+  }
+  public int indexOf(Integer value){
+    int index = 0;
+    Node current = start;
+    if (!(this.contains(value))){
+      return -1;
+    }
+    while (current != null){
+      if (current.getData().equals(value)){
+        return index;
+      }
+      if (current.next() != null){
+        current = current.next();
+        index++;
+      }
+    }
+    return -1;
   }
 }
