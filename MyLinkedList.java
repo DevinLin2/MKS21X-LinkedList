@@ -45,19 +45,31 @@ class MyLinkedList{
     list.add(value2);
     list.add(value3);
     System.out.println(list); // 5, 6, 9
-    System.out.println("size: " + list.size());
+    System.out.println("size: " + list.size()); // 3
     list.add(0,replacement);
     System.out.println(list); // 2, 5, 6, 9
-    System.out.println("size: " + list.size());
+    System.out.println("size: " + list.size()); // 4
     list.add(2,replacement2);
     System.out.println(list); // 2, 5, 8, 6, 9
-    System.out.println("size: " + list.size());
+    System.out.println("size: " + list.size()); // 5
     list.add(5,replacement3);
     System.out.println(list); // 2, 5, 8, 6, 9, 7
-    System.out.println("size: " + list.size());
+    System.out.println("size: " + list.size()); // 6
     list.add(4,replacement2);
     System.out.println(list); // 2, 5, 8, 6, 8, 9, 7
-    System.out.println("size: " + list.size());
+    System.out.println("size: " + list.size()); // 7
+    list.remove(0);
+    System.out.println(list); // 5, 8, 6, 8, 9, 7
+    System.out.println("size: " + list.size()); // 6
+    list.remove(5);
+    System.out.println(list); // 5, 8, 6, 8, 9
+    System.out.println("size: " + list.size()); // 5
+    list.remove(3);
+    System.out.println(list); // 5, 8, 6, 9
+    System.out.println("size: " + list.size()); // 4
+    list.remove(1);
+    System.out.println(list); // 5, 6, 9
+    System.out.println("size: " + list.size()); // 3
   }
   public MyLinkedList(){
     start = new Node(null,null,null);
@@ -154,23 +166,41 @@ class MyLinkedList{
     Node toAdd = new Node(value,null,null);
     if (index != 0 && index != length){
       Node nodeAtIndex = getNthNode(index);
-      nodeAtIndex.prev.setNext(toAdd);
-      nodeAtIndex.setPrev(toAdd);
       toAdd.setPrev(nodeAtIndex.prev);
       toAdd.setNext(nodeAtIndex);
-      length++;
+      nodeAtIndex.prev.setNext(toAdd);
+      nodeAtIndex.setPrev(toAdd);
     }
     if (index == 0){
       toAdd.setNext(start);
       start.setPrev(toAdd);
       start = toAdd;
-      length++;
     }
     if (index == length){
       toAdd.setPrev(end);
       end.setNext(toAdd);
       end = toAdd;
-      length++;
     }
+    length++;
+  }
+  public Integer remove(int index){
+    Node toRemove = getNthNode(index);
+    Integer data = toRemove.getData();
+    if (index != 0 && index != length-1){
+      toRemove.prev().setNext(toRemove.next());
+      toRemove.next().setPrev(toRemove.prev());
+    }
+    if (index == 0){
+      start = start.next();
+      start.prev.setNext(null);
+      start.setPrev(null);
+    }
+    if (index == length-1){
+      end = end.prev();
+      end.next.setPrev(null);
+      end.setNext(null);
+    }
+    length--;
+    return data;
   }
 }
