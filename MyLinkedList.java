@@ -38,15 +38,26 @@ class MyLinkedList{
     Integer value2 = 6;
     Integer value3 = 9;
     Integer replacement = 2;
+    Integer replacement2 = 8;
+    Integer replacement3 = 7;
     MyLinkedList list = new MyLinkedList();
     list.add(value);
     list.add(value2);
     list.add(value3);
-    System.out.println(list.indexOf(5));
-    System.out.println(list.indexOf(9));
-    System.out.println(list.indexOf(6));
-    System.out.println(list.indexOf(0));
-    System.out.println(list);
+    System.out.println(list); // 5, 6, 9
+    System.out.println("size: " + list.size());
+    list.add(0,replacement);
+    System.out.println(list); // 2, 5, 6, 9
+    System.out.println("size: " + list.size());
+    list.add(2,replacement2);
+    System.out.println(list); // 2, 5, 8, 6, 9
+    System.out.println("size: " + list.size());
+    list.add(5,replacement3);
+    System.out.println(list); // 2, 5, 8, 6, 9, 7
+    System.out.println("size: " + list.size());
+    list.add(4,replacement2);
+    System.out.println(list); // 2, 5, 8, 6, 8, 9, 7
+    System.out.println("size: " + list.size());
   }
   public MyLinkedList(){
     start = new Node(null,null,null);
@@ -81,6 +92,9 @@ class MyLinkedList{
     String ans = "";
     while (current != null){
       ans += current.getData();
+      if (current.next() != null){
+        ans += ", ";
+      }
       if (current.next() != null){
         current = current.next();
       } else {
@@ -135,5 +149,28 @@ class MyLinkedList{
       }
     }
     return -1;
+  }
+  public void add(int index, Integer value){
+    Node toAdd = new Node(value,null,null);
+    if (index != 0 && index != length){
+      Node nodeAtIndex = getNthNode(index);
+      nodeAtIndex.prev.setNext(toAdd);
+      nodeAtIndex.setPrev(toAdd);
+      toAdd.setPrev(nodeAtIndex.prev);
+      toAdd.setNext(nodeAtIndex);
+      length++;
+    }
+    if (index == 0){
+      toAdd.setNext(start);
+      start.setPrev(toAdd);
+      start = toAdd;
+      length++;
+    }
+    if (index == length){
+      toAdd.setPrev(end);
+      end.setNext(toAdd);
+      end = toAdd;
+      length++;
+    }
   }
 }
