@@ -37,11 +37,13 @@ class MyLinkedList{
     Integer value = 5;
     Integer value2 = 6;
     Integer value3 = 9;
+    Integer replacement = 2;
     MyLinkedList list = new MyLinkedList();
     list.add(value);
     list.add(value2);
     list.add(value3);
-    //System.out.println(list.get(2));
+    //System.out.println(list.set(1,replacement));
+    //System.out.println(list);
   }
   public MyLinkedList(){
     start = new Node(null,null,null);
