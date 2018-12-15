@@ -70,6 +70,15 @@ class MyLinkedList{
     list.remove(1);
     System.out.println(list); // 5, 6, 9
     System.out.println("size: " + list.size()); // 3
+    list.remove(value);
+    System.out.println(list); // 6, 9
+    System.out.println("size: " + list.size()); // 2
+    list.remove(value2);
+    System.out.println(list); // 9
+    System.out.println("size: " + list.size()); // 1
+    list.remove(value3);
+    System.out.println(list);  // empty
+    System.out.println("size: " + list.size()); // 0
   }
   public MyLinkedList(){
     start = new Node(null,null,null);
@@ -131,19 +140,18 @@ class MyLinkedList{
     return getNthNode(index).setData(value);
   }
   public boolean contains(Integer value){
-    boolean contain = false;
     Node current = start;
     while (current != null){
       if (current.getData().equals(value)){
-        contain = true;
+        return true;
       }
       if (current.next() != null){
         current = current.next();
       } else {
-        return contain;
+        return false;
       }
     }
-    return contain;
+    return false; // should never run
   }
   public int indexOf(Integer value){
     int index = 0;
@@ -164,7 +172,7 @@ class MyLinkedList{
   }
   public void add(int index, Integer value){
     Node toAdd = new Node(value,null,null);
-    if (index != 0 && index != length){
+    if (index != 0 && index != length){ // ask about why the order of this matters.
       Node nodeAtIndex = getNthNode(index);
       toAdd.setPrev(nodeAtIndex.prev);
       toAdd.setNext(nodeAtIndex);
@@ -186,6 +194,12 @@ class MyLinkedList{
   public Integer remove(int index){
     Node toRemove = getNthNode(index);
     Integer data = toRemove.getData();
+    if (length == 1){
+      start = null;
+      end = null;
+      length--;
+      return data;
+    }
     if (index != 0 && index != length-1){
       toRemove.prev().setNext(toRemove.next());
       toRemove.next().setPrev(toRemove.prev());
@@ -202,5 +216,44 @@ class MyLinkedList{
     }
     length--;
     return data;
+  }
+  public boolean remove(Integer value){
+    Node current = start;
+    if (length == 1){
+      if (current.getData().equals(value)){
+        start = null;
+        end = null;
+        length--;
+        return true;
+      } else {
+        return false;
+      }
+    }
+    while (current != null){
+      if (current.getData().equals(value)){
+        if (current != start && current != end){
+          current.prev().setNext(current.next());
+          current.next().setPrev(current.prev());
+        }
+        if (current == start){
+          start = start.next();
+          start.prev.setNext(null);
+          start.setPrev(null);
+        }
+        if (current == end){
+          end = end.prev();
+          end.next.setPrev(null);
+          end.setNext(null);
+        }
+        length--;
+        return true;
+      }
+      if (current.next() != null){
+        current = current.next();
+      } else {
+        return false;
+      }
+    }
+    return false;
   }
 }
