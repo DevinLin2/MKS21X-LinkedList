@@ -73,7 +73,7 @@ class MyLinkedList{
   public String toString(){
     Node current = start;
     String ans = "";
-    while(current != null){
+    while (current != null){
       ans += current.getData();
       if (current.next() != null){
         current = current.next();
@@ -82,5 +82,14 @@ class MyLinkedList{
       }
     }
     return ans;
+  }
+  private Node getNthNode(int index){
+    int i = index;
+    Node NthNode = start;
+    while (i > 0){
+      NthNode = NthNode.next();
+      i--;
+    }
+    return NthNode;
   }
 }
