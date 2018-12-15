@@ -42,8 +42,9 @@ class MyLinkedList{
     list.add(value);
     list.add(value2);
     list.add(value3);
-    //System.out.println(list.set(1,replacement));
-    //System.out.println(list);
+    System.out.println(list.contains(4));
+    System.out.println(list.contains(5));
+    System.out.println(list);
   }
   public MyLinkedList(){
     start = new Node(null,null,null);
@@ -100,5 +101,20 @@ class MyLinkedList{
   }
   public Integer set(int index, Integer value){
     return getNthNode(index).setData(value);
+  }
+  public boolean contains(Integer value){
+    boolean contain = false;
+    Node current = start;
+    while (current != null){
+      if (current.getData().equals(value)){
+        contain = true;
+      }
+      if (current.next() != null){
+        current = current.next();
+      } else {
+        return contain;
+      }
+    }
+    return contain;
   }
 }
