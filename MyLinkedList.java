@@ -33,53 +33,6 @@ class MyLinkedList{
   }
   private int length;
   private Node start,end;
-  public static void main(String[] args){
-    Integer value = 5;
-    Integer value2 = 6;
-    Integer value3 = 9;
-    Integer replacement = 2;
-    Integer replacement2 = 8;
-    Integer replacement3 = 7;
-    MyLinkedList list = new MyLinkedList();
-    list.add(value);
-    list.add(value2);
-    list.add(value3);
-    System.out.println(list); // 5, 6, 9
-    System.out.println("size: " + list.size()); // 3
-    list.add(0,replacement);
-    System.out.println(list); // 2, 5, 6, 9
-    System.out.println("size: " + list.size()); // 4
-    list.add(2,replacement2);
-    System.out.println(list); // 2, 5, 8, 6, 9
-    System.out.println("size: " + list.size()); // 5
-    list.add(5,replacement3);
-    System.out.println(list); // 2, 5, 8, 6, 9, 7
-    System.out.println("size: " + list.size()); // 6
-    list.add(4,replacement2);
-    System.out.println(list); // 2, 5, 8, 6, 8, 9, 7
-    System.out.println("size: " + list.size()); // 7
-    list.remove(0);
-    System.out.println(list); // 5, 8, 6, 8, 9, 7
-    System.out.println("size: " + list.size()); // 6
-    list.remove(5);
-    System.out.println(list); // 5, 8, 6, 8, 9
-    System.out.println("size: " + list.size()); // 5
-    list.remove(3);
-    System.out.println(list); // 5, 8, 6, 9
-    System.out.println("size: " + list.size()); // 4
-    list.remove(1);
-    System.out.println(list); // 5, 6, 9
-    System.out.println("size: " + list.size()); // 3
-    list.remove(value);
-    System.out.println(list); // 6, 9
-    System.out.println("size: " + list.size()); // 2
-    list.remove(value2);
-    System.out.println(list); // 9
-    System.out.println("size: " + list.size()); // 1
-    list.remove(value3);
-    System.out.println(list);  // empty
-    System.out.println("size: " + list.size()); // 0
-  }
   public MyLinkedList(){
     start = new Node(null,null,null);
     end = new Node(null,null,null);
