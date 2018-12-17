@@ -134,9 +134,15 @@ class MyLinkedList{
     return NthNode;
   }
   public Integer get(int index){
+    if (index < 0 || index >= size()){
+      throw new IndexOutOfBoundsException("Index out of bounds.");
+    }
     return getNthNode(index).getData();
   }
   public Integer set(int index, Integer value){
+    if (index < 0 || index >= size()){
+      throw new IndexOutOfBoundsException("Index out of bounds.");
+    }
     return getNthNode(index).setData(value);
   }
   public boolean contains(Integer value){
@@ -171,6 +177,9 @@ class MyLinkedList{
     return -1;
   }
   public void add(int index, Integer value){
+    if (index < 0 || index > size()){
+      throw new IndexOutOfBoundsException("Index out of bounds.");
+    }
     Node toAdd = new Node(value,null,null);
     if (index != 0 && index != length){ // ask about why the order of this matters.
       Node nodeAtIndex = getNthNode(index);
@@ -192,6 +201,9 @@ class MyLinkedList{
     length++;
   }
   public Integer remove(int index){
+    if (index < 0 || index >= size()){
+      throw new IndexOutOfBoundsException("Index out of bounds.");
+    }
     Node toRemove = getNthNode(index);
     Integer data = toRemove.getData();
     if (length == 1){
