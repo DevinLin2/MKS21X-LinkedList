@@ -221,4 +221,13 @@ class MyLinkedList{
     }
     return false;
   }
+  public void extend(MyLinkedList other){
+    this.end.setNext(other.start);
+    other.start.setPrev(this.end);
+    this.end = other.end;
+    other.start = null;
+    other.end = null;
+    this.length += other.size();
+    other.length = 0;
+  }
 }
