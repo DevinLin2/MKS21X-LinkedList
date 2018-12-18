@@ -322,6 +322,23 @@ public class Driver {
 
         System.out.println("This should print: [666, 1, 2, 3, 4, 5, 6, 7, 8]\n");
 
+        MyLinkedList toAdd = new MyLinkedList();
+
+        for(int i = 0; i < 10; i++) {
+
+            toAdd.add(i);
+
+            //System.out.println(list.size()); <- Debugging
+
+        }
+
+        list.extend(toAdd);
+
+        System.out.println("this is the extended list: " + list);
+        System.out.println("this is the added list (should be null):  " + toAdd);
+        System.out.println("this is the size of the list: " + list.size());
+        System.out.println("this is the size of the added list (whould be 0): " + toAdd.size());
+
     }
 
 }
